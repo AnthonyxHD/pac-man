@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <!-- Allgemeines, Tab-Titel, CSS einbinden -->
+  <head>
+    <meta charset='utf-8' />
+    <title>Pacman Battle</title>
+    <link rel='stylesheet' href='../design/style.css' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp'>
+  </head>
+  <!-- Schriften von Google Fonts einbinden-->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Press+Start+2P&display=swap');
+  </style>
+  
+  <body onload = 'loadName()'>
+    <!--Kopfzeile-->
+    <a href='../index.html' class='headerSeiten'><header>Pacman</header> </a>
+    <!--Navigationskopf-->
+    <div class = 'navigation'>
+      <div class = 'navMenü1 navigationElemente'><a href='../html/spielen.html' class ='button'>Spielen</a></div>
+      <div class = 'navMenü2 navigationElemente'><a href='../html/quiz.html' class = 'button'>Quiz</a></div>
+      <div class = 'navMenü3 navigationElemente'><a href='../html/motivation.html' class = 'button'>Motivation</a></div>
+      <div class = 'navMenü4 navigationElemente' ><a href='../html/impressum.html' class = 'button'>Impressum</a></div>
+    </div>
+    
+    <!--Musikbutton-->
+    <div class = 'gridMusicButton'>
+      <audio id='audio'>
+          <source src='../referenzen/audio/pacman_beginning.wav' type='audio/wav'>
+      </audio>
+  
+      <button id='musicButton' class = 'musicBotton' onclick='playPause()'>Music On/Off</button>
+      
+    </div>
+    <script src='../JavaScript/music.js'></script> <!--Einbinden Javascript für Musik-->
+
+     <!--Anzeige Spielstand & Zeit-->
+    <div class = 'spieleInfos'>
+      <div><span>Score Player 1: </span><span id='scoreP1Anzeige'>0</span></div>
+      <div><span>Time left: </span><span id='timeCountdown'>20s</span></div>
+      <div><span>Score Player 2: </span><span id='scoreP2Anzeige'>0</span></div>
+    </div>
+
+     <!--einbinden JavaScript für Startoverlay-->
+    <script src='../JavaScript/game-menu.js'></script>
+    <script src='../JavaScript/player.js'></script>
+    
+    <div style = 'margin-left:auto; margin-right:auto;  margin-bottom: 3em; width: 736px; height:736px'>
+      <!--Canvas-Menü: Spielfeld-->
+      <canvas id='canvas' style='display:none; margin-top: 2em'>
+      </canvas>
+      
+      <!--Main Screen Overlay-->
+      <div id='mainScreen' class = 'overlay'>
+        <p class='headerOverlay' style = 'grid-row: 2/2'>Pacman Battle</p>
+
+        <div style = 'grid-row: 6/6'>
+          <img src='../referenzen/images/html/mainScreenAnimation.gif' alt='Pacman wird von Ghosts verfolgs' style='width: 736px; margin-bottom: 200px;'>
+        </div>
+        <div id='buttonGame' style = 'grid-row: 10/10'>
+          <a href='#' onclick='insertName(); return false'>Start Game</a>
+        </div>
+        <div id='buttonGame' style = 'grid-row: 12/12'>
+          <a href='#' onclick='controlsGame(); return false'>Spielregeln</a>
+        </div>
+      </div>
+      <!--Main Screen Overlay Namen eingeben-->
+      <div id='insertName' class = 'overlay' style='display: none;'>
+        <p class='headerOverlay' style = 'grid-row: 2/2'>Enter Names<br> 
+          <p class='text' style = 'grid-row: 5/5'> Name Player 1
+          <div id='buttonGame' style = 'grid-row: 6/6'>
+            <input type="text" id='namePlayer1'>
+          </div>
+          <p class='text' style = 'grid-row: 8/8'> Name Player 2
+          <div id='buttonGame' style = 'grid-row: 9/9'>
+            <input type="text" id='namePlayer2'>
+          </div>         
+          <div id='buttonGame' style = 'grid-row: 12/12'>
+            <a href='#' onclick='startGameButtonPressed(); return false'>Start Game</a>
+          </div>
+      </div> 
+      <!--Main Screen Overlay Spielregeln-->
+      <div id='steuerung' class = 'overlay' style='display: none;'>
+        <p class='headerOverlay' style = 'grid-row: 2/2'>Spielregeln <br> 
+        
+        <h2 class='ü2Text' style = 'grid-row: 4/4'>Steuerung:</h2>
+        <p class='text' style = 'grid-row: 5/5'> w nach oben
+        <br>a nach links
+        <br>s nach unten
+        <br>d nach rechts
+        <br>
+        <h2 class='ü2Text' style = 'grid-row: 6/6'>Spielmodus:</h2>
+        <p class='text' style = 'grid-row: 7/7'>
+        Ein Spiel geht über je eine Runde, wer mehr Punkte holen kann gewinnt.<br>
+        Spieler A beginnt und hat 20 Sekunden zeit, um möglichst viele Punkte zu holen. Danach startet Spieler B und muss ebenfalls so viele Punkte wie möglich erspielen.<br>
+        </p>
+        <br>
+        <h2 class='ü2Text' style = 'grid-row: 8/8'>Punkte:</h2>
+        <p class='text' style = 'grid-row: 9/9'>
+        Punkt: 10 Punkte<br>
+        Früchte: 25 Punkte<br>
+        Geister: 50 Punkte<br></p>
+      
+        <!--Spielregeln Back-Button-->
+        <div id='back' style = 'grid-row: 12/12'>
+          <a href='#' onclick='backGame(); return false'>BACK</a>
+        </div>
+      </div>
+
+      <!--2nd Spieler Screen-->
+      <div id='secondPlayerScreen' class = 'overlay' style='display: none'>
+        <p class='headerOverlay' style = 'grid-row: 2/2' id="secondPlayerScreenHeader"></p>
+        <p class='headerOverlay' style = 'grid-row: 4/4'>time's up!</p>
+        <div id='buttonGame' style = 'grid-row: 12/12'>
+          <a href='#' onclick='startGame(playerNumber = 2); return false' id="secondPlayerScreenButtonText"></a>
+          <!--Spiel startet fürs Spieler 2-->
+        </div>
+      </div>
+
+      <!--Screen am Ende-->
+      <div id='endGameScreen' class = 'overlay' style='display: none'>
+          <p class='headerOverlay' style = 'grid-row: 2/2' id='endGameScreenHeader'></p>
+          <p class='headerOverlay' style = 'grid-row: 6/6'><span id='winnerAnzeige'></span></p>
+        <div id='buttonGame' style='text-align: center; grid-row: 10/10'>
+          <a href='#' onclick='backGame();  return false'>Back to menu</a>
+        </div>
+        <div id='buttonGame' style='text-align: center; grid-row: 12/12'>
+          <a href='#' onclick='screenScoreRecords(); scoreRecords();  return false'>Score records</a>
+        </div>
+      
+      </div>
+      <!--Rangliste-->
+      <div id='scoreScreen' class = 'overlay' style='display: none'>
+        <div style = 'grid-row: 2/2'>
+          <h2 class='headerOverlay'>Leader Board:</h2>
+        </div>
+        <div style = 'grid-row: 6/6'>
+          <p id = leaderBoard class='textranking'></p>
+        </div>
+        <div id='buttonGame' style='text-align: center; grid-row: 12/12'>
+          <a href='#' onclick='backGame();  return false'>Back to menu</a>
+        </div>     
+      </div>
+
+    </div>
+
+    <!--Einbinden Javascript für Spiel-->
+    <!--Qulle zur Hilfe zum starten: https://www.youtube.com/watch?v=5IMXpp3rohQ-->
+    
+    <script src='../JavaScript/collision.js'></script>
+    <script src='../JavaScript/gameplay.js'></script>
+    <script src='../JavaScript/controll.js'></script>
+    <script src='../JavaScript/pellets-powerups.js'></script>
+    <script src='../JavaScript/fruits.js'></script>
+    <script src='../JavaScript/board.js'></script>
+    <script src='../JavaScript/pacman.js'></script>
+    <script src='../JavaScript/ghosts.js'></script>
+
+    
+
+    <!--Fusszeile-->
+    <footer id = 'footer'>
+      <img class = 'pacman' src='../referenzen/images/html/pacman-2.png'>
+      <p class ='footerText'>2023 Gruppe 3 Pacman: Anthony Zoss Pano, Eva Zaksek Kovacic, Corina Lombris, Sandra Kaufmann</p>
+    </footer>  
+  </body>
+</html>

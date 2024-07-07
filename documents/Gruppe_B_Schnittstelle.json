@@ -1,0 +1,792 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Pacman Battle - OpenAPI 3.0",
+    "description": "Interface definition for the game 'Pacman Battle', based on the OpenAPI 3.0 specification\n\nModul Frontend Development (Part 1)\n\nUseful Links:\n- [Pacman-Battle-Repository](https://gitlab.com/AnthonyxHD/pac-man)\n- [Schnittstellendefinition](https://gitlab.com/AnthonyxHD/pac-man/-/tree/main/schnittstelle)\n- [Projektmanagement](https://drive.google.com/drive/folders/1yEu2IFb7kR6HTtf4utHtYeLiYF_ucxqi?usp=sharing)",
+    "termsOfService": "https://smartbear.com/terms-of-use/",
+    "contact": {
+      "name": "FRONT Gruppe B",
+      "email": "anthony.zosspano@stud.fhgr.ch"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/ANTHONYZOSS08_1/pacman-battle/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "https://pacman-battle.swagger.io/api/v3",
+      "description": "Backend-Server FHGR"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Status"
+    },
+    {
+      "name": "Score"
+    },
+    {
+      "name": "Rooms"
+    },
+    {
+      "name": "Players"
+    },
+    {
+      "name": "Fruit"
+    },
+    {
+      "name": "Ghost"
+    },
+    {
+      "name": "PowerUp"
+    },
+    {
+      "name": "End"
+    }
+  ],
+  "paths": {
+    "/Rooms": {
+      "get": {
+        "tags": [
+          "Rooms"
+        ],
+        "summary": "Get a list of all rooms.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rooms"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Rooms"
+        ],
+        "summary": "Creates a room.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rooms"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rooms"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input. The room needs a name."
+          }
+        }
+      }
+    },
+    "/Players": {
+      "get": {
+        "tags": [
+          "Players"
+        ],
+        "summary": "Get a list of all players.",
+        "responses": {
+          "200": {
+            "description": "Successfull operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Players"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Players"
+        ],
+        "summary": "Create a player in a room",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Players"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Players"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input. The player needs a room."
+          }
+        }
+      }
+    },
+    "/StatusPlayer": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Get status of first player from server",
+        "responses": {
+          "200": {
+            "description": "Successfully asked First-Player-Status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusPlayers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't get the 1st-Player-Status."
+          },
+          "499": {
+            "description": "1st-Player waited too long and left."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Announce status of a player 1 to the server",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusPlayers"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated Player-Status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusPlayers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update Player-Status."
+          }
+        }
+      }
+    },
+    "/StatusSecondPlayer": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Get status of second player from server",
+        "responses": {
+          "200": {
+            "description": "Successfully asked Second-Player-Status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusPlayers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't get the 2nd-Player-Status."
+          },
+          "499": {
+            "description": "2nd-Player waited too long and left."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Announce status of a player 2 to the server",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusPlayers"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated Player-Status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusPlayers"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update Player-Status."
+          }
+        }
+      }
+    },
+    "/ScoreP1": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "summary": "Get score from Player 1 from server",
+        "responses": {
+          "200": {
+            "description": "Successfully got score from Player 1.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Score"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't find Score from Player 1"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Score"
+        ],
+        "summary": "Score update from Player 1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Score"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful update of Player 1 Score.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Score"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't find Score from Player 1."
+          }
+        }
+      }
+    },
+    "/ScoreP2": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "summary": "Get score from Player 2 from server",
+        "responses": {
+          "200": {
+            "description": "Successfully got score from Player 2.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Score"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't find Score from Player 2."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Score"
+        ],
+        "summary": "Score update from Player 2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Score"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful update of Player 2 Score.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Score"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't find Score from Player 2."
+          }
+        }
+      }
+    },
+    "/FruitAddScore": {
+      "put": {
+        "tags": [
+          "Fruit"
+        ],
+        "summary": "All points that the opponent player eats within 5 seconds are awarded to the player.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Score"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful update of Player Score.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Score"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update Score from Player."
+          }
+        }
+      }
+    },
+    "/FruitEaten": {
+      "get": {
+        "tags": [
+          "Fruit"
+        ],
+        "summary": "Player aks Server if Player has eaten a Fruit.",
+        "responses": {
+          "200": {
+            "description": "Successfully eaten a Fruit.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fruit"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update eaten Fruit."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Fruit"
+        ],
+        "summary": "A Player eats a Fruit and tells the Server.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Fruit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully eaten a Fruit.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fruit"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update eaten Fruit."
+          }
+        }
+      }
+    },
+    "/Ghosts": {
+      "get": {
+        "tags": [
+          "Ghost"
+        ],
+        "summary": "A Player asks the Server if a Ghost has been eaten.",
+        "responses": {
+          "200": {
+            "description": "Successfull.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ghost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ghost"
+        ],
+        "summary": "A Player tells the Server he has eaten a Ghost.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ghost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ghost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update."
+          }
+        }
+      }
+    },
+    "/PowerUps": {
+      "get": {
+        "tags": [
+          "PowerUp"
+        ],
+        "summary": "A Player asks the Server if a PowerUp has been eaten.",
+        "responses": {
+          "200": {
+            "description": "Successfull.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PowerUp"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PowerUp"
+        ],
+        "summary": "A Player tells the Server he has eaten a PowerUp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PowerUp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PowerUp"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update."
+          }
+        }
+      }
+    },
+    "/EndGame": {
+      "get": {
+        "tags": [
+          "End"
+        ],
+        "summary": "Player asks Server if 2ndPlayer has finished playing.",
+        "responses": {
+          "200": {
+            "description": "Successfull.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/End"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update."
+          },
+          "499": {
+            "description": "Player has left the game."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "End"
+        ],
+        "summary": "Player tells Server he finished playing.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/End"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/End"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Server can't understand request due to incorrect syntax."
+          },
+          "404": {
+            "description": "Server can't update."
+          },
+          "499": {
+            "description": "Player has left the game."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Rooms": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1234"
+          },
+          "name": {
+            "type": "string",
+            "example": "room1"
+          },
+          "players": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "4321"
+            }
+          }
+        }
+      },
+      "Players": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "5678"
+          },
+          "roomId": {
+            "type": "string",
+            "example": "8765"
+          }
+        }
+      },
+      "StatusPlayers": {
+        "type": "object",
+        "properties": {
+          "gameOff": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Score": {
+        "type": "object",
+        "properties": {
+          "Score": {
+            "$ref": "#/components/schemas/Score_Score"
+          }
+        }
+      },
+      "Fruit": {
+        "type": "object",
+        "properties": {
+          "fruit": {
+            "$ref": "#/components/schemas/Fruit_fruit"
+          }
+        }
+      },
+      "Ghost": {
+        "type": "object",
+        "properties": {
+          "ghost": {
+            "type": "string",
+            "example": "new Ghost"
+          }
+        }
+      },
+      "PowerUp": {
+        "type": "object",
+        "properties": {
+          "powerup": {
+            "type": "string",
+            "example": "powerUps"
+          }
+        }
+      },
+      "End": {
+        "type": "object",
+        "properties": {
+          "endgameID": {
+            "type": "string",
+            "example": "endGameScreen"
+          }
+        }
+      },
+      "Score_Score": {
+        "type": "object",
+        "properties": {
+          "scoreID": {
+            "type": "string",
+            "example": "scorep1_anzeige"
+          },
+          "scorePoints": {
+            "type": "integer",
+            "format": "int32",
+            "example": 270
+          }
+        }
+      },
+      "Fruit_fruit": {
+        "type": "object",
+        "properties": {
+          "fruitID": {
+            "type": "string",
+            "example": "fruitpower"
+          }
+        }
+      }
+    }
+  }
+}

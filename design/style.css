@@ -1,0 +1,615 @@
+/*________Index_________
+1. Allgemeine Einstellungen
+2. Schriften Haupt- und Unterseiten (ohne Spieloverlay)
+3. Footer
+4. Navigation Unterseiten & Links
+5. Startseite (index.html)
+6. Spielen-Seite
+*/
+
+/*1. Allgemeine Einstellungen*/
+html, body {
+    background-color: #252525;
+    margin:0; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    max-height:100%;
+}
+
+/*2. ________________Schriften Haupt- und Unterseiten (ohne Spieloverlay)______________________*/
+/*header gemeinsame Einstellungen*/
+header{
+    font-family: 'Press Start 2P', cursive;
+    font-size:3em;
+    text-align:center;
+    color: #FEED01;
+}
+/*Header Unterseiten*/
+.headerSeiten {
+    margin-top: 50px;
+    text-decoration: none;
+}
+/*Header Startseite (index.html)*/
+.headerHome {
+    margin-top: 100px;
+}
+/* Normaler Text*/
+p.text {
+    color: #A7A7A7;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: 'Play', sans-serif; 
+    font-size: 1.2em;
+    margin-top: 50px
+}
+/*Text Fusszeile*/
+p.footerText {
+    color: #FEED01;
+    font-family: 'Play', sans-serif; 
+    font-size: larger; 
+    text-align: left;
+}
+
+
+/*Unterseiten Überschriften*/
+h1{
+    margin-left: 50px;
+    margin-top: 50px;
+    font-family: 'Play', sans-serif; 
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.ü1Menü2{
+    color: #EA91BD;
+}
+
+.ü1Menü3{
+    color: #E40E18;
+}
+.ü1Menü4{
+    color: #F9B234;
+}
+
+/*Unterseiten überschrift 2*/
+.ü2Text{
+    color: #A7A7A7;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: -45px;
+    font-family: 'Play', sans-serif; 
+    font-size: 1.4em;
+    font-style: oblique;
+}
+
+/*________________Footer______________*/
+footer {
+    display: flex;
+    align-items: center; 
+    margin-top: auto;
+}
+
+/*Bild im Footer*/
+.pacman{
+    height: 30px;
+    margin-left: 50px;
+}
+
+img.pacman{
+    margin-right: 1%;
+}
+
+/*________________Navigation Unterseiten & Links______________*/
+
+/*Container für Navigation*/
+.navigation{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 60px;
+    grid-gap: 5px;
+    margin-top: 50px;
+    border-radius: 3px;
+}
+/*gemeinsame Einstellungen der Buttons */
+.navigationElemente{
+    text-align:center;
+    border-radius: 3px;
+}
+/*Einzelne Buttons*/
+.navMenü1{
+    background-color:#58C0CD;
+}
+.navMenü2{
+    background-color:#EA91BD;
+}
+.navMenü3{
+    background-color:#E40E18;
+}
+.navMenü4{
+    background-color:#F9B234;
+}
+
+/*Links Email*/
+a.mail{
+    color:#A7A7A7;
+}
+
+
+/*________________Startseite (index.html)______________*/
+/*Menücontainer*/
+.gridContainer {
+    display: grid;
+    width: 300px;
+    gap: 15px;
+    text-align:center;
+    padding: 50px;
+    margin:auto;
+}
+
+/*Einzelne Buttons breite und Farbe*/
+.menü1{
+    background-color:#58C0CD;
+    grid-column: 1/3;
+}
+.menü2{
+    background-color:#EA91BD;
+    grid-column: 1/3;
+}
+.menü3{
+    background-color:#E40E18;
+    grid-column: 1/2;
+}
+.menü4{
+    background-color:#F9B234;
+    grid-column: 2/3;
+}
+/*Gemeinsame Einstellungen der einzelnen Gridelemente*/
+.gridItem {
+  min-height: 50px; 
+  border-radius: 3px;
+  font-size: 1.2em;
+}
+/*Gemeinsame Einstellungen der Buttons*/
+.button {
+    color:  #252525;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;     
+    font-family: 'Play', sans-serif; 
+    font-size: larger;
+}
+/*Bild Pacmanpolonaise Grösse*/
+.bildPacmanPolonaise{
+    width: 300px;
+}
+/*Gridcontainer (über zwei Zeilen) Bild Pacmanpolonaise*/
+.divPacmanPolonaise{
+    grid-column: 1/3;
+}
+
+.spieleinfos{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 60px;
+    grid-gap: 5px;
+    margin-top: 50px;
+    border-radius: 3px;
+    text-align:center;
+    
+}
+
+span{
+    color: #FEED01;
+    margin-left: 50px;
+    font-family: 'Press Start 2P', cursive; 
+    font-size: 1em;
+    
+}
+
+
+
+
+/*________________Spielen-Seite______________*/
+
+/*Anzeige Spielerscore und Zeit*/
+.spieleInfos{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 60px;
+    grid-gap: 5px;
+    margin-top: 10px;
+    border-radius: 3px;
+    text-align:center;
+}
+/*Text Spielestand*/
+span{
+    color: #FEED01;
+    font-family: 'Press Start 2P', cursive; 
+    font-size: 1em;
+}
+/*Text Rangliste*/
+.textranking{
+    color: #A7A7A7;
+    margin-left: 140px;
+    font-family: 'Play', sans-serif; 
+    font-size: 1.2em;
+    text-align: left;
+}
+/*Button spiel starten / Spielregeln*/
+#buttonGame a {
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    width: 150px;
+    text-align: center;
+    font-size: 1.5em;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-family: 'Play', sans-serif;
+    
+}
+/*Hover Spiel / Spielregelbutton*/
+#buttonGame a:hover {
+    background-color: #ffffff;
+    color:#252525;
+}
+/*Overlay über Spiel*/
+.overlay {
+    display: grid;
+    grid-template-rows: 3fr repeat(5, 2fr 1fr) 1fr 3fr;
+    background-color:#000000;
+    border-radius: 15px;
+    margin-left:auto; 
+    margin-right:auto; 
+    width: 736px; 
+    height: 736px; 
+    text-align: center;
+}
+/*übertitel für Anleitung Steuerung*/
+.headerOverlay {
+    font-size: 40px;
+    color: #FEED01;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    margin: 0;
+}
+
+#dragAndDrop {
+    font-size: 40px;
+    color: #FEED01;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+
+/*Tabelle für Erklärung Spielsteuerung */
+table {
+    padding-top: 20px;
+    padding-left: 50px;
+    font-size: 40px;
+    text-align: left;
+}
+/*Höhe einzelne Zeile*/
+tr{
+    height: 75px;
+}
+/*Erklärung Steuerung Text rechte Spalte*/
+.steuerungText {
+    color:#ffffff;
+    font-family: 'Play', sans-serif; 
+}
+/*Erklärung Steuerung Text linke Spalte*/
+.steuerungBuchstabe {
+    color:#FEED01;
+    font-family: 'Press Start 2P', cursive; 
+    padding-right: 50px;
+}
+/*Erklärung Steuerung BACK*/
+#back a,
+#backDragAndDrop a{
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    padding-top: 50px;
+}
+/*Erklärung Steuerung BACK Hover*/
+#back a:hover,
+#backDragAndDrop a:hover{
+    color:#252525;
+}
+
+#backDragAndDrop {  
+    text-align: center;
+    margin-top: 950px;
+}
+
+/*Music Button*/
+#musicButton {
+    border-radius: 3px;
+    font-family: 'Press Start 2P', cursive; 
+    color: #252525;
+    background-color: #FEED01;
+    cursor: pointer;
+}
+
+.gridMusicButton{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: 60px;
+    margin-top: 30px;
+    border-radius: 3px;
+}
+/*gemeinsame Einstellungen der Buttons */
+.musicBotton{
+    text-align:center;
+    grid-gap: 5px;
+    border-radius: 3px;
+    grid-column: 3/4;
+}
+
+input{
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    font-size: 1.5em;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Play', sans-serif;
+    background-color: #000000;
+}
+
+
+
+/*knowledgeQuiz*/
+
+/*Button 'Starte das Quiz'*/
+#idStart {
+    background-color: #FEED01;
+    border: none;
+    border-radius: 15px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 30px;
+    margin: 5% auto;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.2);
+    font-family: 'Play', sans-serif;
+}
+
+#idStart:hover {
+    background-color: black;
+    color: #FEED01;
+}
+
+/*Quizfrage*/
+#idQuestion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin: 5%;
+    color: yellow;
+    position: relative;
+    font-family: 'Play', sans-serif;
+    word-wrap: break-word;
+}
+
+
+/*Button Antworten*/
+.classAnswers {
+    background-color: #FEED01;
+    border: none;
+    border-radius: 15px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Play', sans-serif;
+    width: 400px;
+}
+
+.classAnswers:hover {
+    background-color: black;
+    color:#FEED01;
+}
+
+button.classAnswers{
+    background-color: yellow;
+}
+
+#containerAnswers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pacmanQuiz{
+    text-align: center;
+    color:#FEED01;
+}
+
+.containerAnswers{
+    background-color: yellow;
+}
+
+.containerQuiz{
+    display: relative;
+}
+
+#buttonStart{
+    background-color: #252525;
+}
+
+#quizTitle{
+    color: yellow;
+    text-align: center;
+    font-size: 25px;
+}
+
+/*Drag and Drop Quiz*/
+#interactiveQuiz {
+    background-color: #252525;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Cursor verändert seine Form wenn man ein Element greifen kann*/
+[draggable=true] {
+	cursor: grab;
+}
+
+/*Ablage für Drag and Drop Elemente*/
+#question1, #question2, #question3, #question4, #question5, #question6, #question7, #question8{
+	width: 150px;
+	height: 150px;
+	padding: 1em;
+    display: inline-block;
+    background-color: #58C0CD;
+    margin: 15px;
+    justify-content: space-around;
+    align-items: flex-start;
+    border-radius: 10px;
+}
+
+span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 10px;
+    margin: 0 auto;
+  }
+
+#container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+
+/*Buttons Überprüfen und Zurücksetzen*/
+#checkResult, #reset{
+    font-family: 'Play', sans-serif;
+    background-color: #FEED01;
+    border: none;
+    border-radius: 15px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 30px;
+    margin: 10% auto;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.2);
+    justify-content: space-around;
+}
+
+#checkResult:hover,
+#reset:hover {
+    background-color: black;
+    color:#FEED01;
+}
+
+p#questionsDragAndDrop{
+    font-family: 'Play', sans-serif;
+    line-height: 2;
+    color:#FEED01;
+    text-align: left;
+    margin-left: 60px;
+}
+
+#containerGhosts, #containerPoints, #containerSitcoms, #containerVulnerableGhosts, #containerColor{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+img{
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Elemente die per Drag and Drop bewegt werden können*/
+p#drag5, p#drag6, p#drag7, p#drag8, p#drag21, p#drag22, p#drag23, p#drag24 {
+    font-family: 'Play', sans-serif;
+    font-size: 25px;
+    color:#ffffff;
+    font-weight: bold;
+    margin-top: 30%;
+}
+
+p#drag21{
+    color:violet;
+}
+
+p#drag22{
+    color:lightgreen;
+}
+
+p#drag23{
+    color:cyan;
+}
+
+p#drag24{
+    color:yellow;
+}
+
+.questionTitle{
+    font-family: 'Press Start 2P', cursive;
+    color: #FEED01;
+}
+
+/*Seite teilen*/
+.splitLeft, .splitRight{
+    height: 100%;
+    position: absolute;
+    overflow-x: hidden;
+    z-index: 1;
+
+}
+
+.splitLeft{
+    left: 0;
+    width: 55%;
+}
+
+.splitRight{
+    right: 0;
+    width: 45%;
+}
+
+#buttonTemplate {
+    text-align: center;
+  }
+
+  #buttonTemplate button {
+    display: inline-block;
+    margin: 50px;
+  }

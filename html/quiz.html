@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+<!-- Allgemeines, Tab-Titel, CSS einbinden -->
+    <meta charset='utf-8' />
+    <title>Pacman Battle</title>
+    <link rel='stylesheet' href='../design/style.css' />
+  </head>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Press+Start+2P&display=swap');
+  </style>
+
+  <body>
+    <a href='../index.html' class='headerSeiten'><header>Pacman</header></a>
+
+    <div class='navigation'>
+      <div class='navMenü1 navigationElemente'><a href='../html/spielen.html' class='button'>Spielen</a></div>
+      <div class='navMenü2 navigationElemente'><a href='../html/quiz.html' class='button'>Quiz</a></div>
+      <div class='navMenü3 navigationElemente'><a href='../html/motivation.html' class='button'>Motivation</a></div>
+      <div class='navMenü4 navigationElemente'><a href='../html/impressum.html' class='button'>Impressum</a></div>
+    </div>
+
+    <script src='../JavaScript/quiz-menu.js'></script>   
+    <script src='../JavaScript/draganddrop.js'></script>
+    <script src='../JavaScript/knowledgequiz.js'></script>
+    <!--Hauptmenü Quiz--> 
+    <div id = 'mainScreenQuiz' class = 'overlay' style = 'margin-top: 50px'>
+        <div style = 'grid-row: 2/2'>
+            <p class='headerOverlay'>Quiz</p>
+        </div>
+        <div style = 'grid-row: 6/6'>
+            <img src='../referenzen/images/html/mainScreenAnimation.gif' alt='Pacman wird von Ghosts verfolgs' style='width: 736px; margin-bottom: 150px;'>
+        </div>
+        <div id='buttonGame' style = 'grid-row: 10/10'>
+            <a href='#' onclick='startQuiz(); controlsGame1(); return false'>Wissensquiz</a>
+        </div>
+        <div id='buttonGame' style = 'grid-row: 12/12'>
+            <a href='#' onclick='controlsGame2(); return false'>Drag and Drop Quiz</a>
+        </div>
+    </div>
+    <!--Wissensquiz--> 
+    <div id = 'knowledgeQuiz' class = 'overlay' style = 'margin-top: 50px; display: none;'>
+      <div style = 'grid-row: 2/2'> 
+        <p id='idQuestion'></p>
+      </div>
+      <div style = 'grid-row: 4/4' id='containerAnswers'> 
+        <button onclick='tapButton(this)' class='classAnswers' id='idAnswer1'></button>
+      </div>
+      <div style = 'grid-row: 6/6' id='containerAnswers'> 
+        <button onclick='tapButton(this)' class='classAnswers' id='idAnswer2'></button>
+      </div>
+      <div style = 'grid-row: 8/8' id='containerAnswers'> 
+        <button onclick='tapButton(this)' class='classAnswers' id='idAnswer3'></button>
+      </div>
+      <div style = 'grid-row: 10/10' id='containerAnswers'> 
+        <button onclick='tapButton(this)' class='classAnswers' id='idAnswer4'></button>
+      </div>
+      <div style = 'grid-row: 12/12' id='back' >
+        <a href='#' onclick='backHomeQuiz(); return false'>BACK</a>
+      </div>
+    </div>
+
+<!--Drag and Drop Quiz-->
+<!--Fragen-->    
+<div id='interactiveQuiz' style='display: none;'>
+  <p id = 'dragAndDrop'>Drag and Drop Quiz<br> </p>
+  <div class = 'splitLeft'>
+    <div id = 'wrapperQuestionsDragAndDrop'>
+    <p id = 'questionsDragAndDrop'>
+    1. Welcher Geist ist Pinky? <br>
+    2. In welcher Sitcom aus den 90er Jahren wird eine makellose Ms Pac-Man Maschine als verspätetes Hochzeitsgeschenk überreicht? <br>
+    3. Welcher Geist ist Clyde? <br>
+    4. Wie hoch ist die maximal mögliche Punktzahl bei Pac-Man, wenn das Spiel perfekt gespielt wird? <br>
+    5. Welcher Geist ist Blinky? <br>
+    6. Welche Farbe hat Pacman? <br>
+    7. Wie sehen die Geister aus, wenn Pacman eine Power-Pille isst? <br>
+    8. Welcher Geist ist Inky? </p>
+  </div>
+
+<!--Drag and Drop Bilder-->    
+    <div id='containerGhosts'>
+      <img id='drag1' src='../referenzen/images/game/inky.png' width='50' alt='inky' draggable='true' ondragstart='drag(event)'>
+      <img id='drag2' src='../referenzen/images/game/pinky.png' width='50' alt='pinky' draggable='true' ondragstart='drag(event)'>
+      <img id='drag3' src='../referenzen/images/game/clyde.png' width='50' alt='clyde' draggable='true' ondragstart='drag(event)'> 
+      <img id='drag4' src='../referenzen/images/game/blinky.png' width='50' alt='blinky' draggable='true' ondragstart='drag(event)'>
+    </div>
+
+    <div id = 'containerPoints'>
+      <p id='drag5' draggable='true' ondragstart='drag(event)'>100 Points </p>
+      <p id='drag6' draggable='true' ondragstart='drag(event)'>3`333`360 Points </p>
+      <p id='drag7' draggable='true' ondragstart='drag(event)'>5`555`560 Points </p>
+      <p id='drag8' draggable='true' ondragstart='drag(event)'>9`999`999 Points </p>
+    </div>
+
+  <div id = 'containerSitcoms'>
+    <img id='drag13' src='../referenzen/images/game/friends.png' width='100' alt='friends' draggable='true' ondragstart='drag(event)'>
+    <img id='drag14' src='../referenzen/images/game/seinfeld.png' width='100' alt='seinfeld' draggable='true' ondragstart='drag(event)'>
+    <img id='drag15' src='../referenzen/images/game/fullhouse.png' width='100' alt='fullhouse' draggable='true' ondragstart='drag(event)'>
+    <img id='drag16' src='../referenzen/images/game/thefreshprinceofbelair.png' width='100' alt='thefreshprinceofbelair' draggable='true' ondragstart='drag(event)'>
+  </div>
+
+  <div id = 'containerVulnerableGhosts'>
+    <img id='drag17' src='../referenzen/images/game/vulnerableorange.png' width='50' alt='vulnerableorange' draggable='true' ondragstart='drag(event)'>
+    <img id='drag18' src='../referenzen/images/game/vulnerable.png' width='50' alt='vulnerable' draggable='true' ondragstart='drag(event)'>
+    <img id='drag19' src='../referenzen/images/game/vulnerablegreen.png' width='50' alt='vulnerablegreen' draggable='true' ondragstart='drag(event)'>
+    <img id='drag20' src='../referenzen/images/game/vulnerablepink.png' width='50' alt='vulnerablepink' draggable='true' ondragstart='drag(event)'>
+  </div>
+
+  <div id = 'containerColor'>
+    <p id='drag21' draggable='true' ondragstart='drag(event)'>violett</p>
+    <p id='drag22' draggable='true' ondragstart='drag(event)'>grün</p>
+    <p id='drag23' draggable='true' ondragstart='drag(event)'>türkis</p>
+    <p id='drag24' draggable='true' ondragstart='drag(event)'>gelb</p>
+  </div>
+</div> 
+
+<!--Felder für die Ablage der Drag and Drop Elemente-->
+<div class = 'splitRight'>
+  <div id='container2'>
+      <div class='questionTitle'><p>Frage 1</p>
+        <div id='question1' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
+      </div>
+      <div class='questionTitle'><p>Frage 2</p>
+        <div id='question2' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
+      </div>
+      <div class='questionTitle'><p>Frage 3</p>
+        <div id='question3' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
+      </div>
+      <div class='questionTitle'><p>Frage 4</p>
+        <div id='question4' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
+      </div>
+      <div class='questionTitle'><p>Frage 5</p>
+        <div id='question5' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
+      </div>
+      <div class='questionTitle'><p>Frage 6</p>
+        <div id='question6' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
+      </div>
+      <div class='questionTitle'><p>Frage 7</p>
+        <div id='question7' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
+      </div>
+      <div class='questionTitle'><p>Frage 8</p>
+        <div id='question8' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
+      </div>
+      <div id = 'buttonTemplate'>
+        <button onclick = 'pruefen()' id = 'checkResult'>Überprüfen</button>
+        <button onclick = 'reset()' id = 'reset'>Zurücksetzen</button>
+      </div>
+    </div>
+    <!--Button zurück zum Hauptmenü-->
+  </div>
+  <div id='backDragAndDrop'>
+    <a href='#' onclick='backHomeQuiz(); return false'>BACK</a>
+  </div>
+
+
+</div>
+ 
+
+
+
+
+
+
+    <footer id='footer'>
+      <img class='pacman' src='../referenzen/images/html/pacman-2.png'>
+      <p class='footerText'>2023 Gruppe 3 Pacman: Anthony Zoss Pano, Eva Zaksek Kovacic, Corina Lombris, Sandra Kaufmann</p>
+    </footer>
+  </body>
+
+</html>
